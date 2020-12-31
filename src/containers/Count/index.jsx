@@ -1,35 +1,35 @@
-import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {createIncrementAction, createDecrementAction,createIncrementAsyncAction} from '../../redux/actions/count.js'
+import React, { Component } from 'react';
+import {increment, decrement,incrementAsync} from '../../redux/actions/count';
+import {connect} from 'react-redux';
 
-//这是一个UI组件
+
 class Count extends Component {
     
     increment = () => {
         const {value} = this.selectNumber
-        this.props.jia(value*1)
+        this.props.increment(value*1)
     } 
     decrement = () => {
         const {value} = this.selectNumber
-        this.props.jian(value*1)
+        this.props.decrement(value*1)
     }
     incrementIfOdd = () => {
         const {value} = this.selectNumber
         if (this.props.count % 2 !== 0) {
-            this.props.jia(value*1)
+            this.props.increment(value*1)
         }
         
     }
     incrementAsync = () => {
         const {value} = this.selectNumber 
-        this.props.jiaAsync(value*1, 500)
+        this.props.incrementAsync(value*1, 500)
     }
 
     render() {
         return (
             <div>
                 <h2>我是Count组件</h2>
-                <h4>current sum is: {this.props.count}, 总人数为：{this.props.resnhu}</h4>
+                <h4>current sum is: {this.props.count}, 总人数为：{this.props.personCount}</h4>
                 <select ref= {c => this.selectNumber = c}>
                     <option value ="1">1</option>
                     <option value ="2">2</option>
@@ -51,12 +51,13 @@ class Count extends Component {
 
 //这是一个容器组件
 export default connect(
-    state => ({count: state.he, resnhu: state.rens.length}), //map状态
-
-    //mapDispacthToProps的简写
+    state => ({
+        count: state.count, 
+        personCount: state.persons.length
+    }), //map状态
     {
-        jia: createIncrementAction,
-        jian: createDecrementAction,
-        jiaAsync: createIncrementAsyncAction
+        increment,
+        decrement,
+        incrementAsync
     }
 )(Count)
