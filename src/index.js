@@ -9,9 +9,3 @@ ReactDOM.render(
     <App/> 
     </Provider>,
     document.getElementById('root'));
-
-// //监测redux中的状态的改变，如果redux的状态发生了改变，那么重新渲染App组件
-// store.subscribe(() => {
-//     ReactDOM.render(<App/>, document.getElementById('root'));
-
-// }) 

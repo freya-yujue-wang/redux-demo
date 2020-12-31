@@ -1,5 +1,4 @@
-import {INCREMENT, DECREMENT} from './constant'
-import store from './store'
+import {INCREMENT, DECREMENT} from '../constant'
 
 //同步action，action的值是object的一般对象
 export const createIncrementAction = (data) => ({type:INCREMENT, data })

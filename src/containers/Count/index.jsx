@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import {createIncrementAction, createDecrementAction,createIncrementAsyncAction} from '../../redux/count_action.js'
+import {createIncrementAction, createDecrementAction,createIncrementAsyncAction} from '../../redux/actions/count.js'
 
 //这是一个UI组件
 class Count extends Component {
     
-increment = () => {
+    increment = () => {
         const {value} = this.selectNumber
         this.props.jia(value*1)
     } 
@@ -28,7 +28,8 @@ increment = () => {
     render() {
         return (
             <div>
-                <h1>current sum is: {this.props.count}</h1>
+                <h2>我是Count组件</h2>
+                <h4>current sum is: {this.props.count}, 总人数为：{this.props.resnhu}</h4>
                 <select ref= {c => this.selectNumber = c}>
                     <option value ="1">1</option>
                     <option value ="2">2</option>
@@ -50,7 +51,7 @@ increment = () => {
 
 //这是一个容器组件
 export default connect(
-    state => ({count: state}),
+    state => ({count: state.he, resnhu: state.rens.length}), //map状态
 
     //mapDispacthToProps的简写
     {
